@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400;1,900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Plus+Jakarta+Sans&family=Poppins:wght@400;500;600;700;800;900&family=Roboto:wght@500;700;900&display=swap');
+
+
+.Login-Section{
+  position: absolute;
+  background-color: white;
+  width: 100vw;
+  height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+}
+
+.Login-Welcome {
+  background-color: #141466;
+  width: 459px; 
+  height: 600px;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;  
+  position: relative;
+  top: 20px;
+  left: 20px;
+}
+
+.Login-Flex{
+  display: flex;  
+
+}
+
+.Login-Content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+img {
+  width: 153px;
+  height: auto;
+  padding: 20px 0 0 20px;
+}
+
+h1 {
+  font-size: 41px;
+  font-weight: 700;
+  margin-bottom: 0;
+  padding: 20px 0 0 0;
+  color: whitesmoke;
+}
+
+p {
+  font-size: 22px;
+  font-weight: 400;
+  padding: 20px 0 0 0;
+  margin-top: -10px;
+  color: #FFE457;
+}
+
+.Login-Form {
+  display: flex;
+  flex-direction: column;
+  margin-left: 0;   
+}
+
+.Login-Form-Section {
+  margin-left: 100px;   
+}
+
+
+input {
+  width: 400px;
+  height: 58px;
+  margin: 2px 0 30px 0;
+  border-color: #C2C0FF;
+  border-radius: 8px;   
+}
+
+input:after {
+  border-color: #C2C0FF;    
+}
+
+button {
+  width: 264px;
+  height: 58px;
+  background-color: #FFE457;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  font-size: 22px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #F8D000;
+}
+
+
+h2 {
+  font-size: 46px;
+  font-weight: 700;
+  margin-bottom: 0%;
+}
+
+.form-register {
+  font-size: 22px;
+  font-weight: 400;
+  color:black ;  
+  margin-bottom: 70px;
+}
+
+span {
+  font-size: 22px;
+  font-weight: 400;
+  color: #5A57FF;
+}
+
+.submit-error {
+  font-size: 12px;
+  color:red;
+  margin-top: 10px;
+}
+
+
+
