@@ -12,23 +12,34 @@ function App() {
   const {currentUser} = useContext(AuthContext)
 
   const RequireAuth = ({children}) => {
-    return currentUser ? children : <Navigate to="/Login" />
+    return currentUser ? children : <Navigate to="/login" />
   }
+
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          {/* <Route path="/">
+          <Route path="/">
             <Route path="login" element={<Login />} />
-            <Route index element={<RequireAuth><Dashboard /></RequireAuth>} /> */}
-            {/* <Route path="dashboard" element={<Dashboard />} /> */}
+            <Route
+              index
+              element={
+                <RequireAuth>
+                  <Dashboard />
+                </RequireAuth>
+              }
+            />
+          </Route>
+            
 
             
-            <Route index element={<RequireAuth><Login /></RequireAuth>} />
+            {/* <Route index element={<RequireAuth><Login /></RequireAuth>} />
             <Route path="/" />
-            <Route path="/Login" element={<Login /> }/>
-            <Route path="/Dashboard" element={<RequireAuth><Dashboard /></RequireAuth>} />
-            <Route path="*" element={<RequireAuth><Login /></RequireAuth>} />
+            <Route path="Login" element={<Login /> }/>
+            <Route path="Dashboard" element={<RequireAuth><Dashboard /></RequireAuth>} />
+            <Route path="*" element={<RequireAuth><Login /></RequireAuth>} /> */}
+
+            
           
         </Routes>
       </BrowserRouter>
