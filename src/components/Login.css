@@ -94,6 +94,11 @@ button:hover {
   background-color: #F8D000;
 }
 
+label {
+  font-size: 22px;
+  font-weight: 700;
+}
+
 
 h2 {
   font-size: 46px;

@@ -21,7 +21,7 @@ const Login = () => {
     signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
     // Signed in 
-    console.log(userCredential)
+    console.log("userCredential", userCredential)
     const user = userCredential.user;
     dispatch({type:"LOGIN", payload:user})
     navigate("/")
@@ -53,10 +53,12 @@ const Login = () => {
               </h2>
               <p className="form-register">Don’t have an account? <span>Register</span></p>
               <form  className="Login-Form" onSubmit={handleLogin}> 
-                <label for="email"><b>Email</b></label> <br />
+                <label for="email">Email<br />
                 <input type="email" placeholder="email" onChange={e=>setEmail(e.target.value)}/>
-                <label for="password"><b>Password</b></label> <br />
+                </label>
+                <label for="password">Password<br />
                 <input type="password" placeholder="password" onChange={e=>setPassword(e.target.value)} />
+                </label>
                 <button type="submit">Continue</button>
                 {error && <span className="submit-error">Incorrect email or password</span>}
               </form>
