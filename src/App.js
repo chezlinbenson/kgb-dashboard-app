@@ -29,15 +29,8 @@ function App() {
                 </RequireAuth>
               }
             />
-          </Route>
-            
+          </Route>         
 
-            
-            {/* <Route index element={<RequireAuth><Login /></RequireAuth>} />
-            <Route path="/" />
-            <Route path="Login" element={<Login /> }/>
-            <Route path="Dashboard" element={<RequireAuth><Dashboard /></RequireAuth>} />
-            <Route path="*" element={<RequireAuth><Login /></RequireAuth>} /> */}
 
             
           

@@ -16,7 +16,7 @@ const Login = () => {
   const {dispatch} = useContext(AuthContext)
 
   const handleLogin = (e)=> { 
-    e.preventDefault()
+    e.preventDefault();
 
     signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
@@ -34,11 +34,11 @@ const Login = () => {
     }
 
   return (
-    <section class="Login-Section">
-      <div class="Login-Flex">
-        <div class="Login-Welcome">
+    <section className="Login-Section">
+      <div className="Login-Flex">
+        <div className="Login-Welcome">
           <img src={Logo} alt="KGB Law logo" className="px-4" />
-          <div class="Login-Content">
+          <div className="Login-Content">
               <h1>Start Your <br /> Journey With Us.</h1>
               <p>Elevating Financial Freedom: <br />
               Your Best Debt Settlement Partner.
@@ -47,18 +47,18 @@ const Login = () => {
             
         </div>
           
-            <div class="Login-Form-Section">
+            <div className="Login-Form-Section">
               <h2>
                 Login
               </h2>
-              <p class="form-register">Don’t have an account? <span>Register</span></p>
-              <form  class="Login-Form" onSubmit={handleLogin}> 
+              <p className="form-register">Don’t have an account? <span>Register</span></p>
+              <form  className="Login-Form" onSubmit={handleLogin}> 
                 <label for="email"><b>Email</b></label> <br />
                 <input type="email" placeholder="email" onChange={e=>setEmail(e.target.value)}/>
                 <label for="password"><b>Password</b></label> <br />
                 <input type="password" placeholder="password" onChange={e=>setPassword(e.target.value)} />
                 <button type="submit">Continue</button>
-                {error && <span class="submit-error">Incorrect email or password</span>}
+                {error && <span className="submit-error">Incorrect email or password</span>}
               </form>
             </div>
       </div>
