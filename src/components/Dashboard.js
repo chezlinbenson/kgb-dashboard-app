@@ -66,7 +66,8 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
 
 
     return (
-        <section className="Dashboard-Sidebar">
+        <section className="Menubar">
+
             <div>
                 <ul>
                     <li>
@@ -85,13 +86,27 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
             </div>
 
             <div className="Dashboard-Data">
+                <div className="Dashboard-Sidebar">
+                    <p>Dashboard</p>
+                    <p>Dashboard</p>
+                    <p>Dashboard</p>
+                    <p>Dashboard</p>
+                    <p>Dashboard</p>
+                    <p>Dashboard</p>
+                </div>
                 {/* Display the user data associated with the current user */}
                 {Array.isArray(users) ? (
-                    <PaymentsTable rows={users} />
+                    <div className="tableContainer">
+                        <div className="tableTitle">Latest Transactions</div>
+                        <PaymentsTable rows={users} />
+                    </div>
                 ) : (
                     <p>Loading user data...</p>
                 )}
+
+
             </div>
+
         </section>
     );
 };

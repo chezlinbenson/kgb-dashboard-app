@@ -9,7 +9,7 @@ import Paper from '@mui/material/Paper';
 export default function PaymentsTable({ rows = [] }) {
     return (
         <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <Table sx={{ maxWidth: 650 }} aria-label="simple table">
                 <TableHead>
                     <TableRow>
 
@@ -41,10 +41,5 @@ export default function PaymentsTable({ rows = [] }) {
     );
 }
 
-//   <p>Name: {currentUserData.Name}</p>
-//           <p>Surname: {currentUserData.Surname}</p>
-//           <p>Email: {currentUserData.Email}</p>
-//           <p>Password: {currentUserData.Password}</p>
-//           <p>Debit id: {currentUserData.deb_id}</p>
-//           <p>User Id: {currentUserData.id}</p>
+
 
