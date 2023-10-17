@@ -1,42 +1,40 @@
-
-import './App.css';
+import { useState } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from './components/Login.js';
 import Dashboard from './components/Dashboard.js';
-import { useContext } from 'react';
-import { AuthContext } from './components/context/AuthContext';
-// import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 function App() {
+  const [currentUser, setCurrentUser] = useState(null);
 
-  const {currentUser} = useContext(AuthContext)
-
-  const RequireAuth = ({children}) => {
-    return currentUser ? children : <Navigate to="/login" />
+  const RequireAuth = ({ children }) => {
+    return currentUser ? children : <Navigate to="/login" />;
   }
+
+  // Pass down setCurrentUser to child components (Login and Dashboard) to update the authentication state.
 
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
           <Route path="/">
-            <Route path="login" element={<Login />} />
+            <Route
+              path="login"
+              element={<Login setCurrentUser={setCurrentUser} />}
+            />
             <Route
               index
               element={
                 <RequireAuth>
-                  <Dashboard />
+                  <Dashboard currentUser={currentUser} setCurrentUser={setCurrentUser} />
                 </RequireAuth>
               }
             />
-          </Route>         
+
+          </Route>
 
 
-            
-          
         </Routes>
       </BrowserRouter>
-        
     </div>
   );
 }

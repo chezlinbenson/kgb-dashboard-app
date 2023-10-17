@@ -52,7 +52,7 @@ p {
   font-weight: 400;
   padding: 20px 0 0 0;
   margin-top: -10px;
-  color: #FFE457;
+  
 }
 
 .Login-Form {
@@ -124,6 +124,3 @@ span {
   color:red;
   margin-top: 10px;
 }
-
-
-
