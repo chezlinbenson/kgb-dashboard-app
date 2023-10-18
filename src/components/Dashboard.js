@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { auth } from "../firebase";
 import { app } from "../firebase";
-import { getFirestore, collection, getDocs, query, where } from "firebase/firestore";
+import { getFirestore, collection, getDocs } from "firebase/firestore";
 import "./Dashboard.css";
 import { signOut } from "firebase/auth";
 import PaymentsTable from "./PaymentsTable";
@@ -10,7 +10,16 @@ import PaymentsTable from "./PaymentsTable";
 const Dashboard = ({ currentUser, setCurrentUser }) => {
 
     const [users, setUsers] = useState([]);
-    const [currentUserData, setCurrentUserData] = useState(null);
+    const [currentUserData, setCurrentUserData] = useState({
+        "Email": "",
+        "deb_id": 0,
+        "Name": "",
+        "Surname": "",
+        "Password": "",
+        "id": "",
+        "Client Reference": ""
+    });
+
 
     const fetchUserData = async () => {
         const db = getFirestore(app); // Assuming 'app' is already initialized
@@ -32,22 +41,23 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
 
     useEffect(() => {
         if (users.length > 0) {
-            // Access the currently logged-in user
+            // Access the currently logged-in user-
             const loggedInUser = currentUser;
 
             // Filter the data to find the user's data (change the condition based on your user identification)
-            const userData = users.find((user) => user.email === loggedInUser.email);
+            const userData = users.find((user) => user.Email === loggedInUser.email);
 
             if (userData) {
                 console.log(loggedInUser);
                 console.log(userData);
                 console.log(userData.Email);
                 console.log(userData.Surname);
-                setCurrentUserData(userData);
-                console.log("CURRENT USER DATE HERE", currentUser);
+                setCurrentUserData({ ...userData });
+                console.log("CURRENT USER DATA HERE", currentUserData);
+
             }
         }
-    }, [users, currentUser]);
+    }, [users, currentUser, currentUserData]);
 
 
 
@@ -88,25 +98,24 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
             <div className="Dashboard-Data">
                 <div className="Dashboard-Sidebar">
                     <p>Dashboard</p>
-                    <p>Dashboard</p>
-                    <p>Dashboard</p>
-                    <p>Dashboard</p>
-                    <p>Dashboard</p>
-                    <p>Dashboard</p>
+                    <p>Debt</p>
+                    <p>Make Payment</p>
+                    <p>Notifications</p>
+                    <p>Settings</p>
+                    <p>Logout</p>
                 </div>
                 {/* Display the user data associated with the current user */}
-                {Array.isArray(users) ? (
+                {Array.isArray(currentUserData) ? (
                     <div className="tableContainer">
                         <div className="tableTitle">Latest Transactions</div>
-                        <PaymentsTable rows={users} />
+                        <PaymentsTable rows={currentUserData} />
+                        console.log("What's Happening Here?")
                     </div>
                 ) : (
                     <p>Loading user data...</p>
                 )}
 
-
             </div>
-
         </section>
     );
 };

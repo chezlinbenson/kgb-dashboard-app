@@ -54,10 +54,22 @@ margin-bottom: 15px;
 }
 
 .Dashboard-Data {
-    display: flex;
+    display: flex;    
 }
 
+
 .Dashboard-Sidebar{
-    background-color: #141466;
-    width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  background-color: #141466;
+  width: 250px;
+  height: 100vh;
+  font-size: 16px;
+  padding: 20px; 
+}
+
+.Dashboard-Sidebar p{
+    color: #C2C0FF;
 }
