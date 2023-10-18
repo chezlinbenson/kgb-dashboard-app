@@ -5,25 +5,20 @@ body {
   background-color: #fcfcfc;
 }
 
-ul {
+/* ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #04AA6D;
+    background-color:white;
   }
   
   li {
-    float: left;
+    
   }
   
   li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 20px;
+    
   }
   
   li a:hover:not(.active) {
@@ -36,8 +31,8 @@ ul {
 
 
 .log-out-btn {
-   float:right
-}
+   
+} */
 
 .tableContainer {
 -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
@@ -45,13 +40,32 @@ box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
 padding: 20px;
 margin: 20px;
 width: 650px;
+left: 500px;
 }
+
+/* .tableContainer p {
+background-color: red;   
+position: absolute; 
+right: 0; 
+margin-right: 0;
+} */
 
 .tableTitle {
 font-weight: 500;
 color: gray;
 margin-bottom: 15px;
 }
+
+.Dashboard-Main {
+    display: flex;
+   position: relative;
+   right: 0;
+   background-color:#FAF9FF;
+}
+
+/* .Dashboard-Data p:last-of-type {
+    
+} */
 
 .Dashboard-Data {
     display: flex;    
@@ -63,13 +77,47 @@ margin-bottom: 15px;
   flex-direction: column;
   align-items: start;
   justify-content: center;
+  position: relative;
+  z-index: 10;
+  left:auto;
+  top: 0;
+  margin-left: 0;
   background-color: #141466;
   width: 250px;
   height: 100vh;
   font-size: 16px;
   padding: 20px; 
+  font-weight: 300;
 }
 
-.Dashboard-Sidebar p{
-    color: #C2C0FF;
+.Dashboard-Sidebar a{
+  color: #C2C0FF;
+  font-size: 24px;
 }
+
+.Dashboard-Sidebar li {
+list-style: none;
+}
+
+.Menubar{
+  background-color: white;
+ position: absolute; 
+ right: 0;  
+ width: 1090px;
+ height: 90px;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+    display: block;
+  }
+  
+  .active {
+    background-color: #04AA6D;
+  }
+
+.Dash-LogOut {
+  background-color:#141466;
+  color:#C2C0FF ;
+}
+

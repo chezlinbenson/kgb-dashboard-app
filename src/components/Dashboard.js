@@ -7,6 +7,7 @@ import { signOut } from "firebase/auth";
 import PaymentsTable from "./PaymentsTable";
 
 
+
 const Dashboard = ({ currentUser, setCurrentUser }) => {
 
     const [users, setUsers] = useState([]);
@@ -76,10 +77,10 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
 
 
     return (
-        <section className="Menubar">
+        <section className="Dashboard-Main">
 
-            <div>
-                <ul>
+            <div className="Menubar">
+                {/* <ul>
                     <li>
                         <a>Dashboard</a>
                     </li>
@@ -89,20 +90,22 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
                     <li>
                         <a>Contact</a>
                     </li>
-                    <li className="log-out-btn">
-                        <button onClick={handleLogout}>Log Out</button>
+                    <li className="log-out-btn"> */}
+                {/* <button onClick={handleLogout}>Log Out</button>
                     </li>
-                </ul>
+                </ul> */}
             </div>
 
             <div className="Dashboard-Data">
                 <div className="Dashboard-Sidebar">
-                    <p>Dashboard</p>
-                    <p>Debt</p>
-                    <p>Make Payment</p>
-                    <p>Notifications</p>
-                    <p>Settings</p>
-                    <p>Logout</p>
+                    <ul>
+                        <li><a>Dashboard</a></li>
+                        <li><a>Debt</a></li>
+                        <li><a>Make Payment</a></li>
+                        <li><a>Notifications</a></li>
+                        <li><a>Settings</a></li>
+                        <li><a className="Dash-LogOut" onClick={handleLogout}>Log Out</a></li>
+                    </ul>
                 </div>
                 {/* Display the user data associated with the current user */}
                 {Array.isArray(currentUserData) ? (
