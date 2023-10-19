@@ -2,6 +2,7 @@ import { auth } from "../firebase";
 import { signOut } from "firebase/auth";
 import "./Sidebar.css";
 import Logo from "../assets/logo/kgb-logo.png";
+import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined';
 
 
 
@@ -26,7 +27,7 @@ export const Sidebar = () => {
             <div className="Dashboard-Sidebar">
                 <img src={Logo} alt="KGB Law logo" className="px-4" />
                 <ul>
-                    <li><a>Dashboard</a></li>
+                    <li><GridViewOutlinedIcon /><a>Dashboard</a></li>
                     <li><a>Debt</a></li>
                     <li><a>Make Payment</a></li>
                     <li><a>Notifications</a></li>
