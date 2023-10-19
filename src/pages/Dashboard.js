@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { app } from "../firebase";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
 import "./Dashboard.css";
+import DebtorsTable from "../components/DebtorsTable";
 import PaymentsTable from "../components/PaymentsTable";
 import { Sidebar } from "../components/Sidebar"
 
@@ -12,12 +13,12 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
     const [users, setUsers] = useState([]);
     const [currentUserData, setCurrentUserData] = useState({
         "Email": "",
-        "deb_id": 0,
+        "Deb_id": 0,
         "Name": "",
         "Surname": "",
         "Password": "",
-        "id": "",
-        "Client Reference": ""
+        "Id": "",
+        "Client_reference": ""
     });
 
 
@@ -59,6 +60,54 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
         }
     }, [users, currentUser, currentUserData]);
 
+    //Fetching Payments Data here
+
+    const [payments, setPayments] = useState([]);
+    const [currentPaymentData, setCurrentPaymentData] = useState({
+        "Deb_id": 0,
+        "Amount": 0,
+        "Date": "",
+    });
+
+
+    const fetchPaymentData = async () => {
+        const db = getFirestore(app); // Assuming 'app' is already initialized
+        const colRef = collection(db, "Payments");
+
+        try {
+            const snapshot = await getDocs(colRef);
+            const paymentData = snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+            setPayments(paymentData);
+            console.log("Fetched payment data:", paymentData);
+        } catch (error) {
+            console.error("Error fetching payment data:", error.message);
+        }
+    };
+
+    useEffect(() => {
+        fetchPaymentData();
+    }, []);
+
+    useEffect(() => {
+        if (payments.length > 0) {
+            // Access the currently logged-in user-
+            const loggedInUser = currentUser;
+
+            // Filter the data to find the user's data (change the condition based on your user identification)
+            const paymentData = payments.filter((payment) => payment.Deb_id === currentUserData.Deb_id);
+
+            if (paymentData) {
+                console.log(loggedInUser);
+                console.log(paymentData);
+                console.log(paymentData.Amount);
+                console.log(paymentData.Date);
+                setCurrentPaymentData({ ...paymentData });
+                console.log("CURRENT PAYMENT DATA HERE", currentPaymentData);
+
+            }
+        }
+    }, [payments, setCurrentPaymentData]);
+
 
     return (
         <section className="Dashboard-Main">
@@ -67,8 +116,7 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
             {Array.isArray([currentUserData]) ? (
                 <div className="tableContainer">
                     <div className="tableTitle">Latest Transactions</div>
-                    <PaymentsTable rows={[currentUserData]} />
-                    console.log("What's Happening Here?")
+                    <DebtorsTable rows={[currentUserData]} />
                 </div>
             ) : (
                 <p>Loading user data...</p>

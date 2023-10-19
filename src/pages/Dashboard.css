@@ -39,11 +39,9 @@ body {
 box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
 padding: 20px;
 margin: 20px;
-width: 650px;
+width: 100%;
 left: 500px;
 }
-
-
 
 .tableTitle {
 font-weight: 500;
@@ -51,10 +49,6 @@ color: gray;
 margin-bottom: 15px;
 }
 
-
-/* .Dashboard-Data p:last-of-type {
-    
-} */
 
 
 
