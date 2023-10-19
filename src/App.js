@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Login from './components/Login.js';
-import Dashboard from './components/Dashboard.js';
+import Login from '../src/pages/Login';
+import Dashboard from '../src/pages/Dashboard.js';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -31,7 +31,6 @@ function App() {
             />
 
           </Route>
-
 
         </Routes>
       </BrowserRouter>
