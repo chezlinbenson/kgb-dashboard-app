@@ -3,7 +3,7 @@ import { app } from "../firebase";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
 import "./Dashboard.css";
 import PaymentsTable from "../components/PaymentsTable";
-import {Sidebar} from "../components/Sidebar"
+import { Sidebar } from "../components/Sidebar"
 
 
 
@@ -23,7 +23,7 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
 
     const fetchUserData = async () => {
         const db = getFirestore(app); // Assuming 'app' is already initialized
-        const colRef = collection(db, "Users");
+        const colRef = collection(db, "Debtors");
 
         try {
             const snapshot = await getDocs(colRef);
@@ -64,10 +64,10 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
         <section className="Dashboard-Main">
             < Sidebar currentUser={currentUser} />
             {/* Display the user data associated with the current user */}
-            {Array.isArray(currentUserData) ? (
+            {Array.isArray([currentUserData]) ? (
                 <div className="tableContainer">
                     <div className="tableTitle">Latest Transactions</div>
-                    <PaymentsTable rows={currentUserData} />
+                    <PaymentsTable rows={[currentUserData]} />
                     console.log("What's Happening Here?")
                 </div>
             ) : (
