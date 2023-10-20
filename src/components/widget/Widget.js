@@ -7,19 +7,20 @@ import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 
 
 const Widget = ({ type, widgetData }) => {
+  
 
     let data;
     //temporary
     console.log("Widget Data", widgetData)
-    const amount = widgetData.reduce((accum, current) => accum + current.Amount, 0)
-    const diff = 30
-    console.log({ amount })
+    const payedAmount = widgetData.reduce((accum, current) => accum + current.Amount, 0)
+    const diff = payedAmount
+    console.log({ payedAmount })
 
     switch (type) {
         case "Payed":
             data = {
                 title: "Amount Payed",
-                amount: amount,
+                amount: payedAmount,
                 isMoney: true,
                 icon: (
                     <InsertChartOutlinedOutlinedIcon className="icon" />
@@ -65,11 +66,11 @@ const Widget = ({ type, widgetData }) => {
                 <div className="box-left">
                     <span className="title">{data.title}</span>
                     <span className="counter">
-                        {/* {data.isMoney && "R"} {data.amount} */}
+                        {data.isMoney && "R"} {data.amount}
                     </span>
                 </div>
                 <div className="box-right">
-                    <span className="debt-icon">{data.icon}</span>
+                    <span className="icon">{data.icon}</span>
                     <div className="persentage">R{diff}</div>
                 </div>
             </div>

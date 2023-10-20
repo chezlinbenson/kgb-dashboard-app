@@ -45,7 +45,7 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
             const paymentsData = snapshotPayments.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
             setPayments(paymentsData);
 
-            const snapshotDebt = await getDocs(colRef);
+            const snapshotDebt = await getDocs(colRefDebts);
             const debtsData = snapshotDebt.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
             setDebts(debtsData);
 
@@ -87,6 +87,22 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
             }
         }
     }, [debtors, currentUser, currentDebtorsData, currentPaymentsData, payments, debts, currentDebtsData]);
+
+    //new array with just dates
+    let capital = currentDebtsData.Capital
+    let amountOwed = capital;
+    let datesArray = currentPaymentsData.filter(item => item.Date);
+    let paymentsArray = currentPaymentsData.filter(item => item.Amount);
+
+
+    let debtsArray = currentDebtsData.filter(item => {
+
+        let expenses = item.Fees + item.Interest.
+            amountOwed - expenses
+
+        return amountOwed
+
+    });
 
 
     return (
