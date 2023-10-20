@@ -6,6 +6,7 @@ import "./Dashboard.css";
 import PaymentsTable from "../components/PaymentsTable";
 import { Sidebar } from "../components/Sidebar"
 import Widget from "../components/widget/Widget"
+import Navbar from "../components/Navbar"
 
 
 
@@ -91,15 +92,17 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
 
     return (
         <section className="Dashboard-Main">
-            < Sidebar currentUser={currentUser} />
+            < Sidebar currentUser={currentDebtorsData} />
             <div className="Dashboard-Content">
+                <Navbar />
                 <h1 className="Welcome-User">Dashboard</h1>
-                <p className="Welcome">Welcome Back,{currentPaymentsData.Name}</p>
+                <p className="Welcome">Welcome Back,{currentDebtorsData.Name}</p>
                 {/* Display the user data associated with the current user */}
                 <div className="Widgets">
-                    <Widget />
-                    <Widget />
-                    <Widget />
+                    <Widget type="Balance" widgetData={currentPaymentsData} />
+                    <Widget type="Debt" widgetData={currentPaymentsData} />
+                    <Widget type="Overview" widgetData={currentPaymentsData} />
+                    <Widget type="Summary" widgetData={currentPaymentsData} />
                 </div>
                 {Array.isArray(currentPaymentsData) ? (
                     <div className="tableContainer">
