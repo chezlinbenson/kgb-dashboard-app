@@ -28,6 +28,7 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
     });
     const [currentPaymentsData, setCurrentPaymentsData] = useState([]);
     const [currentDebtsData, setCurrentDebtsData] = useState([]);
+    const [widgetsInfo, setWidgetsInfo] = useState([]);
 
 
     const fetchData = async () => {
@@ -71,19 +72,46 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
             const debtorsData = debtors.find((user) => user.Email === loggedInUser.email);
 
             if (debtorsData) {
-                console.log(loggedInUser);
-                console.log(debtorsData);
-                console.log(debtorsData.Email);
-                console.log(debtorsData.Surname);
                 setCurrentDebtorsData({ ...debtorsData });
                 const debtorsPaymentsData = payments.filter(payment => payment.Deb_id === debtorsData.Deb_id);
                 setCurrentPaymentsData(debtorsPaymentsData);
-                const debtorsDebtsData = payments.filter(debt => debt.Deb_id === debtorsData.Deb_id);
-                setCurrentDebtsData(debtorsDebtsData);              
-                
+                const debtorsDebtsData = debts.filter(debt => debt.Deb_id === debtorsData.Deb_id);
+                setCurrentDebtsData(debtorsDebtsData);
             }
+
+            //Data for Widgets
+            let totalPayed = currentPaymentsData.reduce((accum, current) => accum + current.Amount, 0)
+            let totalDue = currentDebtsData[0].Capital;
+            let monthlyTotals = [];
+            currentPaymentsData.forEach(payment => {
+                let expenses = currentDebtsData[0].Interest + currentDebtsData[0].Fees;
+                totalDue += expenses;
+                totalDue -= payment.Amount;
+                let totals = {
+                    totPay: payment.Amount,
+                    totDue: totalDue - expenses,
+                    date: payment.Date
+                }
+                monthlyTotals.concat(totals)
+            })
+
+            let widgetData1 = {
+                totalPay: totalPay,
+                totalDue: totalDue
+            }
+
+            let widgetData2 = {
+                totalDue: totalDue,
+                totalDebtsData: currentDebtsData
+            }
+
+            let widgetData3 = {
+                monthlyData: monthlyData
+            }
+
+            setWidgetsInfo([widgetData1, widgetData2, widgetData3])
         }
-    }, [debtors, currentUser, currentDebtorsData, currentPaymentsData, payments, debts, currentDebtsData]);
+    }, [debtors, currentUser, currentDebtorsData, currentPaymentsData, payments, debts, currentDebtsData, widgetsInfo]);
 
     //new array with just dates
     // let capital = currentDebtsData.Capital
@@ -111,10 +139,9 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
                 <p className="Welcome">Welcome Back,{currentDebtorsData.Name}</p>
                 {/* Display the user data associated with the current user */}
                 <div className="Widgets">
-                    <Widget type="Payed" widgetData={currentPaymentsData} />
-                    <Widget type="Due" widgetData={currentDebtsData} />
-                    <Widget type="Overview" widgetData={currentPaymentsData} />
-                    <Widget type="Summary" widgetData={currentPaymentsData} />
+                    <Widget type="Payed" widgetData={widgetsInfo[0]} />
+                    <Widget type="Due" widgetData={widgetsInfo[1]} />
+                    <Widget type="Summary" widgetData={widgetsInfo[2]} />
                 </div>
                 {Array.isArray(currentPaymentsData) ? (
                     <div className="tableContainer">

@@ -10,26 +10,22 @@ const Widget = ({ type, widgetData }) => {
 
 
     let data;
-    //temporary
-    console.log("Widget Data", widgetData)
-    const payedAmount = widgetData.reduce((accum, current) => accum + current.Amount, 0)
-    const diff = payedAmount
-    console.log({ payedAmount })
 
     switch (type) {
         case "Payed":
             data = {
                 title: "Amount Payed",
-                amount: payedAmount,
+                amount: widgetData.totalPay,
+                due: widgetData.totalDue,
                 isMoney: true,
                 icon: (
                     <InsertChartOutlinedOutlinedIcon className="icon" />
                 )
             }
             break;
-        case "Due":
+        case "Summary":
             data = {
-                title: "Amount Due",
+                title: "Summary",
                 isMoney: false,
                 icon: (
                     <QueryStatsOutlinedIcon className="icon" />
@@ -39,18 +35,9 @@ const Widget = ({ type, widgetData }) => {
                 // )
             };
             break;
-        case "Overview":
+        case "Due":
             data = {
-                title: "Overview",
-                isMoney: false,
-                icon: (
-                    <InsertChartOutlinedOutlinedIcon className="icon" />
-                )
-            };
-            break;
-        case "Summary":
-            data = {
-                title: "Summary",
+                title: "Amount Due",
                 isMoney: true,
                 icon: (
                     <DescriptionOutlinedIcon className="icon" />
@@ -75,21 +62,6 @@ const Widget = ({ type, widgetData }) => {
                 </div>
             </div>
         </section>
-
-        //  <section className="Debt-Widget">
-        //     <div className="Widget-Container">
-        //         <div className="box-left">
-        //             <span className="title">{data.title}</span>
-        //             <span className="counter">
-        //                 {data.isMoney && "R"} {data.amount}
-        //             </span>
-        //         </div>
-        //         <div className="box-right">
-        //             <span className="icon">{data.icon}</span>
-        //             <div className="persentage">R{diff}</div>
-        //         </div>
-        //     </div>
-        // </section>
     )
 }
 
