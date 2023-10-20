@@ -1,8 +1,9 @@
-div{
+.Debt-Widget{
   height: 150px;
   width: 150px;
   background: #fff;
   border-radius: 20px;
+  margin:20px ;
  }
 .box{
   display: flex;

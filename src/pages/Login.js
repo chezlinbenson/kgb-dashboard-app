@@ -36,7 +36,7 @@ const Login = ({ setCurrentUser }) => {
     <section className="Login-Section">
       <div className="Login-Flex">
         <div className="Login-Welcome">
-          <img src={Logo} alt="KGB Law logo" className="px-4" />
+          <img src={Logo} alt="KGB Law logo" />
           <div className="Login-Content">
             <h1>Start Your <br /> Journey With Us.</h1>
             <p>Elevating Financial Freedom: <br />

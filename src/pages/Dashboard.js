@@ -99,7 +99,7 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
                 <div className="Widgets">
                     <Widget />
                     <Widget />
-                    {/* <Widget /> */}
+                    <Widget />
                 </div>
                 {Array.isArray(currentPaymentsData) ? (
                     <div className="tableContainer">
