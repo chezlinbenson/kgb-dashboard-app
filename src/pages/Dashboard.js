@@ -16,7 +16,7 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
 
     const [debtors, setDebtors] = useState([]);
     const [payments, setPayments] = useState([]);
-    // const [debts, setDebts] = useState([])
+    const [debts, setDebts] = useState([])
     const [currentDebtorsData, setCurrentDebtorsData] = useState({
         "Email": "",
         "Deb_id": 0,
@@ -27,18 +27,14 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
         "Client_reference": ""
     });
     const [currentPaymentsData, setCurrentPaymentsData] = useState([]);
-    // const [currentDebtData, setCurrentDebtData] = useState({
-    //     "Deb_id": 0,
-    //     "Amount": 0,
-    //     "Date": "",
-    // });
+    const [currentDebtsData, setCurrentDebtsData] = useState({});
 
 
     const fetchData = async () => {
         const db = getFirestore(app); // Assuming 'app' is already initialized
         const colRefDebtors = collection(db, "Debtors");
         const colRefPayments = collection(db, "Payments");
-        // const colRefDebt = collection(db, "Debt");
+        const colRefDebts = collection(db, "Debt");
 
         try {
             const snapshotDebtors = await getDocs(colRefDebtors);
@@ -49,13 +45,13 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
             const paymentsData = snapshotPayments.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
             setPayments(paymentsData);
 
-            // const snapshotDebt = await getDocs(colRef);
-            // const debtData = snapshotDebt.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-            // setDebt(debtData);
+            const snapshotDebt = await getDocs(colRef);
+            const debtsData = snapshotDebt.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+            setDebts(debtsData);
 
             console.log("Fetched user data:", debtorsData);
             console.log("Fetched user data:", paymentsData);
-            // console.log("Fetched user data:", debtData);
+            console.log("Fetched user data:", debtsData);
 
         } catch (error) {
             console.error("Error fetching user data:", error.message);
@@ -82,12 +78,15 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
                 setCurrentDebtorsData({ ...debtorsData });
                 const debtorsPaymentsData = payments.filter(payment => payment.Deb_id === debtorsData.Deb_id);
                 setCurrentPaymentsData(debtorsPaymentsData);
+                const debtorsDebtsData = payments.filter(debt => debt.Deb_id === debtorsData.Deb_id);
+                setCurrentDebtsData(debtorsDebtsData);
                 console.log("CURRENT USER DATA HERE", currentDebtorsData);
                 console.log("CURRENT PAYMENT DATA HERE", currentPaymentsData);
+                console.log("CURRENT PAYMENT DATA HERE", currentDebtsData);
 
             }
         }
-    }, [debtors, currentUser, currentDebtorsData, currentPaymentsData, payments]);
+    }, [debtors, currentUser, currentDebtorsData, currentPaymentsData, payments, debts, currentDebtsData]);
 
 
     return (
@@ -99,8 +98,8 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
                 <p className="Welcome">Welcome Back,{currentDebtorsData.Name}</p>
                 {/* Display the user data associated with the current user */}
                 <div className="Widgets">
-                    <Widget type="Balance" widgetData={currentPaymentsData} />
-                    <Widget type="Debt" widgetData={currentPaymentsData} />
+                    <Widget type="Payed" widgetData={currentPaymentsData} />
+                    <Widget type="Due" widgetData={currentDebtsData} />
                     <Widget type="Overview" widgetData={currentPaymentsData} />
                     <Widget type="Summary" widgetData={currentPaymentsData} />
                 </div>
