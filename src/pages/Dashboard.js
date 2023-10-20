@@ -27,7 +27,7 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
         "Client_reference": ""
     });
     const [currentPaymentsData, setCurrentPaymentsData] = useState([]);
-    const [currentDebtsData, setCurrentDebtsData] = useState({});
+    const [currentDebtsData, setCurrentDebtsData] = useState([]);
 
 
     const fetchData = async () => {
@@ -79,30 +79,27 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
                 const debtorsPaymentsData = payments.filter(payment => payment.Deb_id === debtorsData.Deb_id);
                 setCurrentPaymentsData(debtorsPaymentsData);
                 const debtorsDebtsData = payments.filter(debt => debt.Deb_id === debtorsData.Deb_id);
-                setCurrentDebtsData(debtorsDebtsData);
-                console.log("CURRENT USER DATA HERE", currentDebtorsData);
-                console.log("CURRENT PAYMENT DATA HERE", currentPaymentsData);
-                console.log("CURRENT PAYMENT DATA HERE", currentDebtsData);
-
+                setCurrentDebtsData(debtorsDebtsData);              
+                
             }
         }
     }, [debtors, currentUser, currentDebtorsData, currentPaymentsData, payments, debts, currentDebtsData]);
 
     //new array with just dates
-    let capital = currentDebtsData.Capital
-    let amountOwed = capital;
-    let datesArray = currentPaymentsData.filter(item => item.Date);
-    let paymentsArray = currentPaymentsData.filter(item => item.Amount);
+    // let capital = currentDebtsData.Capital
+    // let amountOwed = capital;
+    // let datesArray = currentPaymentsData.filter(item => item.Date);
+    // let paymentsArray = currentPaymentsData.filter(item => item.Amount);
 
 
-    let debtsArray = currentDebtsData.filter(item => {
+    // let debtsArray = currentDebtsData.filter(item => {
 
-        let expenses = item.Fees + item.Interest.
-            amountOwed - expenses
+    //     let expenses = item.Fees + item.Interest.
+    //         amountOwed - expenses
 
-        return amountOwed
+    //     return amountOwed
 
-    });
+    // });
 
 
     return (

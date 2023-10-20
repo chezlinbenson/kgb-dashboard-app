@@ -7,7 +7,7 @@ import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 
 
 const Widget = ({ type, widgetData }) => {
-  
+
 
     let data;
     //temporary
@@ -61,7 +61,7 @@ const Widget = ({ type, widgetData }) => {
             break;
     }
     return (
-        <section className="Debt-Widget">
+        <section className="Debtors-Widget">
             <div className="Widget-Container">
                 <div className="box-left">
                     <span className="title">{data.title}</span>
@@ -75,6 +75,21 @@ const Widget = ({ type, widgetData }) => {
                 </div>
             </div>
         </section>
+
+        //  <section className="Debt-Widget">
+        //     <div className="Widget-Container">
+        //         <div className="box-left">
+        //             <span className="title">{data.title}</span>
+        //             <span className="counter">
+        //                 {data.isMoney && "R"} {data.amount}
+        //             </span>
+        //         </div>
+        //         <div className="box-right">
+        //             <span className="icon">{data.icon}</span>
+        //             <div className="persentage">R{diff}</div>
+        //         </div>
+        //     </div>
+        // </section>
     )
 }
 
