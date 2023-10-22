@@ -75,12 +75,15 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
                 setCurrentDebtorsData({ ...debtorsData });
                 const debtorsPaymentsData = payments.filter(payment => payment.Deb_id === debtorsData.Deb_id);
                 setCurrentPaymentsData(debtorsPaymentsData);
+                console.log(currentPaymentsData)
                 const debtorsDebtsData = debts.filter(debt => debt.Deb_id === debtorsData.Deb_id);
                 setCurrentDebtsData(debtorsDebtsData);
             }
 
             //Data for Widgets
-            let totalPayed = currentPaymentsData.reduce((accum, current) => accum + current.Amount, 0)
+            console.log(currentPaymentsData)
+            // let totalPayed = currentPaymentsData.reduce((accum, current) => accum + current.Amount, 0)
+            ////console.log(totalPayed)
             let totalDue = currentDebtsData[0].Capital;
             let totalExpenses = currentPaymentsData.reduce((accum, current) => accum + (current.Interest + current.Fees), 0)
             let monthlyTotals = [];
@@ -96,13 +99,14 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
                 monthlyTotals.concat(totals)
             })
 
-            let widgetData1 = {
-                totalPayed: totalPayed,
-            }
+            // let widgetData1 = {
+            //     totalPayed: totalPayed,
 
-            let widgetData2 = {
-                totalOwed: totalDue + totalPayed,
-            }
+            // }
+
+            // let widgetData2 = {
+            //     totalOwed: totalDue + totalPayed,
+            // }
 
             let widgetData3 = {
                 totalExpenses: totalExpenses,
@@ -112,7 +116,7 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
                 totalDue: totalDue,
             }
 
-            setWidgetsInfo([widgetData1, widgetData2, widgetData3, widgetData4])
+            setWidgetsInfo([widgetData3, widgetData4]) //widgetData1, widgetData2
         }
     }, [debtors, currentUser, currentDebtorsData, currentPaymentsData, payments, debts, currentDebtsData, widgetsInfo]);
 
@@ -128,8 +132,8 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
                 <div className="Widgets">
                     <Widget type="Payed" widgetData={widgetsInfo[0].totalPayed} />
                     <Widget type="Owed" widgetData={widgetsInfo[1].totalOwed} />
-                    <Widget type="Expenses" widgetData={widgetsInfo[2].totalExpenses} />
-                    <Widget type="Due" widgetData={widgetsInfo[3].totalDue} />
+                    {/* <Widget type="Expenses" widgetData={widgetsInfo[2].totalExpenses} />
+                    <Widget type="Due" widgetData={widgetsInfo[3].totalDue} /> */}
                 </div>
                 {Array.isArray(currentPaymentsData) ? (
                     <div className="tableContainer">
