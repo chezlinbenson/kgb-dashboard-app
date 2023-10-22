@@ -15,33 +15,43 @@ const Widget = ({ type, widgetData }) => {
         case "Payed":
             data = {
                 title: "Amount Payed",
-                amount: widgetData.totalPay,
-                due: widgetData.totalDue,
+                amount: widgetData,
                 isMoney: true,
                 icon: (
                     <InsertChartOutlinedOutlinedIcon className="icon" />
                 )
             }
             break;
-        case "Summary":
+        case "Owed":
             data = {
-                title: "Summary",
-                isMoney: false,
+                title: "Owed",
+                amount:widgetData,
+                isMoney: true,
                 icon: (
                     <QueryStatsOutlinedIcon className="icon" />
                 ),
-                // chart: (
-                //     <BarChart className="vertical-bar" />
-                // )
+                
+            };
+            break;
+        case "Expenses":
+            data = {
+                title: "Expenses",
+                amount: widgetData,
+                isMoney: true,
+                icon: (
+                    <QueryStatsOutlinedIcon className="icon" />
+                ),
+
             };
             break;
         case "Due":
             data = {
                 title: "Amount Due",
+                amount: widgetData,
                 isMoney: true,
                 icon: (
                     <DescriptionOutlinedIcon className="icon" />
-                )
+                ),                            
             };
             break;
         default:
@@ -58,7 +68,7 @@ const Widget = ({ type, widgetData }) => {
                 </div>
                 <div className="box-right">
                     <span className="icon">{data.icon}</span>
-                    <div className="persentage">R{diff}</div>
+                    <div className="percentage">R{data.amount}</div>
                 </div>
             </div>
         </section>

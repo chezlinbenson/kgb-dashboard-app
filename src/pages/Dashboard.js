@@ -82,6 +82,7 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
             //Data for Widgets
             let totalPayed = currentPaymentsData.reduce((accum, current) => accum + current.Amount, 0)
             let totalDue = currentDebtsData[0].Capital;
+            let totalExpenses = currentPaymentsData.reduce((accum, current) => accum + (current.Interest + current.Fees), 0)
             let monthlyTotals = [];
             currentPaymentsData.forEach(payment => {
                 let expenses = currentDebtsData[0].Interest + currentDebtsData[0].Fees;
@@ -96,38 +97,24 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
             })
 
             let widgetData1 = {
-                totalPay: totalPay,
-                totalDue: totalDue
+                totalPayed: totalPayed,
             }
 
             let widgetData2 = {
-                totalDue: totalDue,
-                totalDebtsData: currentDebtsData
+                totalOwed: totalDue + totalPayed,
             }
 
             let widgetData3 = {
-                monthlyData: monthlyData
+                totalExpenses: totalExpenses,
             }
 
-            setWidgetsInfo([widgetData1, widgetData2, widgetData3])
+            let widgetData4 = {
+                totalDue: totalDue,
+            }
+
+            setWidgetsInfo([widgetData1, widgetData2, widgetData3, widgetData4])
         }
     }, [debtors, currentUser, currentDebtorsData, currentPaymentsData, payments, debts, currentDebtsData, widgetsInfo]);
-
-    //new array with just dates
-    // let capital = currentDebtsData.Capital
-    // let amountOwed = capital;
-    // let datesArray = currentPaymentsData.filter(item => item.Date);
-    // let paymentsArray = currentPaymentsData.filter(item => item.Amount);
-
-
-    // let debtsArray = currentDebtsData.filter(item => {
-
-    //     let expenses = item.Fees + item.Interest.
-    //         amountOwed - expenses
-
-    //     return amountOwed
-
-    // });
 
 
     return (
@@ -139,9 +126,10 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
                 <p className="Welcome">Welcome Back,{currentDebtorsData.Name}</p>
                 {/* Display the user data associated with the current user */}
                 <div className="Widgets">
-                    <Widget type="Payed" widgetData={widgetsInfo[0]} />
-                    <Widget type="Due" widgetData={widgetsInfo[1]} />
-                    <Widget type="Summary" widgetData={widgetsInfo[2]} />
+                    <Widget type="Payed" widgetData={widgetsInfo[0].totalPayed} />
+                    <Widget type="Owed" widgetData={widgetsInfo[1].totalOwed} />
+                    <Widget type="Expenses" widgetData={widgetsInfo[2].totalExpenses} />
+                    <Widget type="Due" widgetData={widgetsInfo[3].totalDue} />
                 </div>
                 {Array.isArray(currentPaymentsData) ? (
                     <div className="tableContainer">
