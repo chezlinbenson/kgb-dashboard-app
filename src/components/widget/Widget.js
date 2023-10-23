@@ -6,6 +6,7 @@ import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 
 
 
+
 const Widget = ({ type, widgetData }) => {
 
 
@@ -63,7 +64,7 @@ const Widget = ({ type, widgetData }) => {
                 <div className="box-left">
                     <span className="title">{data.title}</span>
                     <span className="counter">
-                        {data.isMoney && "R"} {data.amount}
+                        {/* {data.isMoney && "R"} {data.amount} */}
                     </span>
                 </div>
                 <div className="box-right">

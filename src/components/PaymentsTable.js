@@ -13,18 +13,18 @@ export default function PaymentsTable({ rows = [] }) {
                 <TableHead>
                     <TableRow>
 
-                        <TableCell className="tableCell">Amount</TableCell>
                         <TableCell className="tableCell">Date</TableCell>
                         <TableCell className="tableCell">Debit Id</TableCell>
+                        <TableCell className="tableCell">Amount</TableCell>
 
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {rows.map((row) => (
                         <TableRow>
-                            <TableCell className="tableCell">{row.Amount}</TableCell>
                             <TableCell className="tableCell">{row.Date}</TableCell>
                             <TableCell className="tableCell">{row.Deb_id}</TableCell>
+                            <TableCell className="tableCell">{row.Amount}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

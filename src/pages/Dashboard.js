@@ -7,10 +7,12 @@ import PaymentsTable from "../components/PaymentsTable";
 import { Sidebar } from "../components/Sidebar"
 import Widget from "../components/widget/Widget"
 import Navbar from "../components/Navbar"
+import Chart from "chart.js/auto";
+import { ArcElement, Tooltip, Legend } from "chart.js";
+import DashboardPieChart from "../components/DashboardPieChart";
+import DashboardBarChart from "../components/DashboardBarChart";
 
-
-
-
+Chart.register(ArcElement, Tooltip, Legend);
 
 const Dashboard = ({ currentUser, setCurrentUser }) => {
 
@@ -29,6 +31,7 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
     const [currentPaymentsData, setCurrentPaymentsData] = useState([]);
     const [currentDebtsData, setCurrentDebtsData] = useState([]);
     const [widgetsInfo, setWidgetsInfo] = useState([]);
+    const [monthlyInfo, setMonthlyInfo] = useState([]);
 
 
     const fetchData = async () => {
@@ -105,20 +108,26 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
             }
 
             let widgetData2 = {
-                totalOwed: totalDue + totalPayed,
+                totalOwed: totalDue - totalPayed,
             }
 
-            // let widgetData3 = {
-            //     totalExpenses: totalExpenses,
-            // }
+            let widgetData3 = {
+                totalExpenses: totalExpenses,
+            }
 
-            // let widgetData4 = {
-            //     totalDue: totalDue,
-            // }
+            let widgetData4 = {
+                totalDue: totalDue,
+            }
 
-            setWidgetsInfo([widgetData1, widgetData2]) //widgetData1, widgetData2
+            let monthlyData = {
+                monthlyTotals: monthlyTotals,
+            }
+
+            setWidgetsInfo([widgetData1, widgetData2, widgetData3, widgetData4])
+            setMonthlyInfo([monthlyData])
+
         }
-    }, [debtors, currentUser, currentDebtorsData, currentPaymentsData, payments, debts, currentDebtsData, widgetsInfo]);
+    }, [debtors, currentUser, currentDebtorsData, currentPaymentsData, payments, debts, currentDebtsData, widgetsInfo, monthlyInfo]);
 
 
     return (
@@ -127,14 +136,25 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
             <div className="Dashboard-Content">
                 <Navbar />
                 <h1 className="Welcome-User">Dashboard</h1>
-                <p className="Welcome">Welcome Back,{currentDebtorsData.Name}</p>
+                <p className="Welcome">Welcome Back, {currentDebtorsData.Name}</p>
                 {/* Display the user data associated with the current user */}
                 <div className="Widgets">
                     <Widget type="Payed" widgetData={widgetsInfo?.[0]?.totalPayed || 0} />
                     <Widget type="Owed" widgetData={widgetsInfo?.[1]?.totalOwed || 0} />
-                    {/* <Widget type="Expenses" widgetData={widgetsInfo[2].totalExpenses} />
-                    <Widget type="Due" widgetData={widgetsInfo[3].totalDue} /> */}
+                    <Widget type="Expenses" widgetData={widgetsInfo?.[2]?.totalExpenses} />
+                    <Widget type="Due" widgetData={widgetsInfo?.[3]?.totalDue} />
                 </div>
+
+                <div className="Charts">
+                    <div className="PieChart ChartContainer">
+                        <DashboardPieChart chartData1={widgetsInfo?.[0]?.totalPayed || 0} chartData2={widgetsInfo?.[3]?.totalDue || 0} />
+                    </div>
+                    <div className="BarChart ChartContainer">
+                        <DashboardBarChart chartData={monthlyInfo} />
+                    </div>
+
+                </div>
+
                 {Array.isArray(currentPaymentsData) ? (
                     <div className="tableContainer">
                         <div className="tableTitle">Latest Transactions</div>

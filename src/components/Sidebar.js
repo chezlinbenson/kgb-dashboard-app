@@ -27,7 +27,7 @@ export const Sidebar = () => {
             <div className="Dashboard-Sidebar">
                 <img src={Logo} alt="KGB Law logo" className="px-4" />
                 <ul>
-                    <li><GridViewOutlinedIcon /><a>Dashboard</a></li>
+                    <li><a>Dashboard</a></li>
                     <li><a>Debt</a></li>
                     <li><a>Make Payment</a></li>
                     <li><a>Notifications</a></li>
@@ -35,6 +35,6 @@ export const Sidebar = () => {
                     <li><a className="Dash-LogOut" onClick={handleLogout}>Log Out</a></li>
                 </ul>
             </div>
-        </div>
+        </div >
     )
 };

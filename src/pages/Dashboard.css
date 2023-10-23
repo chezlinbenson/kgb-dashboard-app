@@ -16,6 +16,7 @@ img {
    position: relative;
    right: 0;
    background-color:#FAF9FF;
+   height: 100%;
 }
 
 .Dashboard-Data {
@@ -23,12 +24,14 @@ img {
 }
 
 .tableContainer {
--webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
-box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
-padding: 20px;
-margin: 20px;
-width: 100%;
-left: 500px;
+/* -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47); */
+  padding: 20px;
+  margin: 20px;
+/* width: 100%; */
+  left: 500px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
 }
 
 .tableTitle {
@@ -52,7 +55,21 @@ margin-bottom: 15px;
 
 .Widgets {
   display: grid;
-  grid-template-columns: 2fr 3fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+ }
+
+ .Charts {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-column-gap: 20px;
+  border-radius: 10px;
+  margin:20px ;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+  
+ }
+
+ .ChartContainer{
+  padding: 20px;
  }
 
 
