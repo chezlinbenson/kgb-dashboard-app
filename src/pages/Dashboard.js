@@ -88,39 +88,61 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
             let totalPayed = currentPaymentsData.reduce((accum, current) => accum + current.Amount, 0)
             //console.log(totalPayed)
             let totalDue = currentDebtsData?.[0]?.Capital || 0;
-            let totalExpenses = currentPaymentsData.reduce((accum, current) => accum + (current.Interest + current.Fees), 0)
+            let totalExpenses = currentDebtsData.reduce((accum, current) => accum + (current.Interest + current.Fees), 0)
+
+            console.log("TOTAL EXPENSES", totalExpenses)
             let monthlyTotals = [];
+            let monthlyPayments = [];
+
+
+
             currentPaymentsData.forEach(payment => {
                 let expenses = currentDebtsData?.[0]?.Interest || 0 + currentDebtsData?.[0]?.Fees || 0;
-                totalDue += expenses;
-                totalDue -= payment.Amount;
+                let interest = currentDebtsData?.[0]?.Interest || 0;
+                let fees = currentDebtsData?.[0]?.Fees || 0;
+                console.log("EXPENSES", expenses)
+                console.log("FEES", currentDebtsData?.[0]?.Fees)
+
+                // totalDue -= payment.Amount;
                 let totals = {
                     totPay: payment.Amount,
-                    totDue: totalDue - expenses,
-                    date: payment.Date
+                    totDue: totalDue,
+                    date: payment.Date,
+                    expenses: expenses,
+                    fees: fees,
+                    interest: interest,
+                    totalOwed: totalDue + expenses,
                 }
-                monthlyTotals.concat(totals)
+                monthlyTotals.push(totals)
+                monthlyPayments.push(payment.Date)
+
+
             })
+
+            console.log("MONTHLY TOTALS", monthlyTotals)
+            console.log("PAYMENT DATES", monthlyPayments.length)
+            // let monthlyExpenses = totalExpenses * monthlyTotals.date.length;
+            // console.log("MONTHLY EXPENSES", monthlyExpenses)
 
             let widgetData1 = {
                 totalPayed: totalPayed,
-
             }
 
             let widgetData2 = {
-                totalOwed: totalDue - totalPayed,
+                totalOwed: totalDue + totalExpenses * monthlyPayments.length,
+
             }
 
             let widgetData3 = {
-                totalExpenses: totalExpenses,
+                totalExpenses: totalExpenses * monthlyPayments.length,
             }
 
             let widgetData4 = {
-                totalDue: totalDue,
+                totalDue: totalDue + totalExpenses * monthlyPayments.length - totalPayed,
             }
 
             let monthlyData = {
-                monthlyTotals: monthlyTotals,
+                totalDue: totalDue + totalExpenses * monthlyPayments.length,
             }
 
             setWidgetsInfo([widgetData1, widgetData2, widgetData3, widgetData4])

@@ -2,9 +2,10 @@ import React from "react";
 // import Chart from "chart.js/auto";
 import { Pie } from "react-chartjs-2";
 
-const DashboardPieChart = ({ amountPayed, amountDue }) => {
-    let pieData = [amountPayed, amountDue]
-    debugger
+const DashboardPieChart = ({ chartData1, chartData2 }) => {
+    let pieData = [chartData1, chartData2]
+    console.log("PIE DATA", pieData)
+
     const labels = ["Amount Payed", "Amount Due"];
     const data = {
         labels: labels,
@@ -17,12 +18,12 @@ const DashboardPieChart = ({ amountPayed, amountDue }) => {
                 ],
                 hoverOffset: 4,
                 // borderColor: "rgb(0,0,255)",
-                data: [30, 1300],
+                data: pieData,
             },
         ],
 
     };
-    debugger
+
     return (
         <div>
             <Pie data={data} />

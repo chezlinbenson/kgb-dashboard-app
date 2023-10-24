@@ -23,18 +23,16 @@ const handleLogout = ({ currentUser, setCurrentUser }) => {
 export const Sidebar = () => {
     return (
 
-        <div className="Dashboard-Data">
-            <div className="Dashboard-Sidebar">
-                <img src={Logo} alt="KGB Law logo" className="px-4" />
-                <ul>
-                    <li><a>Dashboard</a></li>
-                    <li><a>Debt</a></li>
-                    <li><a>Make Payment</a></li>
-                    <li><a>Notifications</a></li>
-                    <li><a>Settings</a></li>
-                    <li><a className="Dash-LogOut" onClick={handleLogout}>Log Out</a></li>
-                </ul>
-            </div>
-        </div >
+        <div className="Dashboard-Sidebar">
+            <img src={Logo} alt="KGB Law logo" className="px-4" />
+            <ul>
+                <li><a>Dashboard</a></li>
+                <li><a>Debt</a></li>
+                <li><a>Make Payment</a></li>
+                <li><a>Notifications</a></li>
+                <li><a>Settings</a></li>
+                <li><a className="Dash-LogOut" onClick={handleLogout}>Log Out</a></li>
+            </ul>
+        </div>
     )
 };
