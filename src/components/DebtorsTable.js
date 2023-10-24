@@ -23,10 +23,7 @@ export default function DebtorsTable({ rows = [] }) {
                 </TableHead>
                 <TableBody>
                     {rows.map((row) => (
-                        <TableRow
-
-                        >
-
+                        <TableRow>
                             <TableCell className="tableCell">{row.Name}</TableCell>
                             <TableCell className="tableCell">{row.Surname}</TableCell>
                             <TableCell className="tableCell">{row.Email}</TableCell>

@@ -6,7 +6,7 @@ import "./Dashboard.css";
 import PaymentsTable from "../components/PaymentsTable";
 import { Sidebar } from "../components/Sidebar"
 import Widget from "../components/widget/Widget"
-import Navbar from "../components/Navbar"
+// import Navbar from "../components/Navbar"
 import Chart from "chart.js/auto";
 import { ArcElement, Tooltip, Legend } from "chart.js";
 import DashboardPieChart from "../components/DashboardPieChart";
@@ -78,7 +78,6 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
                 setCurrentDebtorsData({ ...debtorsData });
                 const debtorsPaymentsData = payments.filter(payment => payment.Deb_id === debtorsData.Deb_id);
                 setCurrentPaymentsData(debtorsPaymentsData);
-                console.log(currentPaymentsData)
                 const debtorsDebtsData = debts.filter(debt => debt.Deb_id === debtorsData.Deb_id);
                 setCurrentDebtsData(debtorsDebtsData);
             }
@@ -86,15 +85,10 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
             //Data for Widgets
             console.log(currentPaymentsData)
             let totalPayed = currentPaymentsData.reduce((accum, current) => accum + current.Amount, 0)
-            //console.log(totalPayed)
             let totalDue = currentDebtsData?.[0]?.Capital || 0;
             let totalExpenses = currentDebtsData.reduce((accum, current) => accum + (current.Interest + current.Fees), 0)
-
-            console.log("TOTAL EXPENSES", totalExpenses)
             let monthlyTotals = [];
             let monthlyPayments = [];
-
-
 
             currentPaymentsData.forEach(payment => {
                 let expenses = currentDebtsData?.[0]?.Interest || 0 + currentDebtsData?.[0]?.Fees || 0;
@@ -103,7 +97,6 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
                 console.log("EXPENSES", expenses)
                 console.log("FEES", currentDebtsData?.[0]?.Fees)
 
-                // totalDue -= payment.Amount;
                 let totals = {
                     totPay: payment.Amount,
                     totDue: totalDue,
@@ -114,15 +107,12 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
                     totalOwed: totalDue + expenses,
                 }
                 monthlyTotals.push(totals)
-                monthlyPayments.push(payment.Date)
-
+                monthlyPayments.push({
+                    date: payment.Date,
+                    amount: payment.Amount
+                })
 
             })
-
-            console.log("MONTHLY TOTALS", monthlyTotals)
-            console.log("PAYMENT DATES", monthlyPayments.length)
-            // let monthlyExpenses = totalExpenses * monthlyTotals.date.length;
-            // console.log("MONTHLY EXPENSES", monthlyExpenses)
 
             let widgetData1 = {
                 totalPayed: totalPayed,
@@ -141,12 +131,12 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
                 totalDue: totalDue + totalExpenses * monthlyPayments.length - totalPayed,
             }
 
-            let monthlyData = {
-                totalDue: totalDue + totalExpenses * monthlyPayments.length,
-            }
+            // let monthlyData = {
+            //     totalDue: totalDue + totalExpenses * monthlyPayments.length,
+            // }
 
             setWidgetsInfo([widgetData1, widgetData2, widgetData3, widgetData4])
-            setMonthlyInfo([monthlyData])
+            setMonthlyInfo([monthlyPayments])
 
         }
     }, [debtors, currentUser, currentDebtorsData, currentPaymentsData, payments, debts, currentDebtsData, widgetsInfo, monthlyInfo]);
@@ -156,9 +146,16 @@ const Dashboard = ({ currentUser, setCurrentUser }) => {
         <section className="Dashboard-Main">
             < Sidebar currentUser={currentDebtorsData} />
             <div className="Dashboard-Content">
-                <Navbar />
-                <h1 className="Welcome-User">Dashboard</h1>
-                <p className="Welcome">Welcome Back, {currentDebtorsData.Name}</p>
+                <div className="Welcome-Flex">
+                    <div className="Welcome-Header">
+                        <h1 className="Welcome-User">Dashboard</h1>
+                        <p className="Welcome">Welcome Back, {currentDebtorsData.Name}</p>
+                    </div>
+                    <div className="Welcome-Button">
+                        <button className="PayNow-Button">Pay Now</button>
+                    </div>
+                </div>
+
                 {/* Display the user data associated with the current user */}
                 <div className="Widgets">
                     <Widget type="Payed" widgetData={widgetsInfo?.[0]?.totalPayed || 0} />

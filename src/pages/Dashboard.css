@@ -16,11 +16,21 @@ img {
    position: relative;
    right: 0;
    background-color:#FAF9FF;
-   height: 100vh;
+   /* height: 100vh; */
 }
 
 .Dashboard-Data {
     display: flex;    
+}
+
+.Welcome-Flex{
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.Welcome-Button {
+  padding-right: 20px;
 }
 
 .tableContainer {
@@ -35,15 +45,16 @@ box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47); */
 }
 
 .tableTitle {
-font-weight: 500;
-color: gray;
-margin-bottom: 15px;
+  color: black;
+  font-size: 22px;
+  font-weight: 400;
+  margin-bottom: 15px;
 }
 
 
 .Welcome-User {
   color: black;
- padding-left: 20px;
+  padding-left: 20px;
 }
 
 .Welcome{
@@ -72,6 +83,7 @@ margin-bottom: 15px;
   padding: 20px;
  }
 
+ 
 
 
 

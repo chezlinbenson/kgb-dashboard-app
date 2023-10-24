@@ -12,14 +12,16 @@
   }
 
   .box-right{  
-   padding: 10px;
-   font-weight: 500;
-   align-self: flex-end;
-   height: 100%;
+    display: flex;
+    padding: 10px;
+    font-weight: 500;
+    /* align-self: flex-end; */
+    justify-content: space-around;
+    justify-items:right;
+    height: 100%;
   }
 
   .Widget-Container {
-    display: flex;
     justify-content: space-between;
   }
   
@@ -27,7 +29,7 @@
     /* position: absolute; */
     right: 10px; 
     top: 40px;
-   font-size:32px;
+   font-size:42px;
    font-weight: 700;
   }
 

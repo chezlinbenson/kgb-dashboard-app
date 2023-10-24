@@ -12,6 +12,7 @@ const handleLogout = ({ currentUser, setCurrentUser }) => {
             // Successfully signed out
             // You can also clear the user state if needed
             setCurrentUser(null);
+
         })
         .catch((error) => {
             // Handle any sign-out errors

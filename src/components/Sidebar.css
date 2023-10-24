@@ -5,24 +5,25 @@
 .Dashboard-Sidebar{
   display: flex;
   flex-direction: column;
-  align-items: start;
-  justify-content: center;
+  /* align-items: start;
+  justify-content: center; */
   position: relative;
   z-index: 10;
   left:auto;
-  top: 0;
-  margin-left: 0;
+  top: 0; 
   background-color: #141466;
   width: 250px;
-  height: 100vh;
-  font-size: 16px;
+  /* height: 100%; */
+  font-size: 20px;
   padding: 20px; 
   font-weight: 300;
+  cursor: pointer;
 }
 
 .Dashboard-Sidebar a{
   color: #C2C0FF;
   font-size:24;
+  margin-left: -20px;
 }
 
 .Dashboard-Sidebar li {
@@ -39,10 +40,9 @@ margin: 40px 20px 40px 20px;
 }
 
 li a:hover:not(.active) {
-    background-color: #060659;
-    display: block;   
+    /* background-color: #060659; */
+    border-bottom:3px solid #FFE457; 
   }
-  
   .active {
     background-color: #04AA6D;
   }
